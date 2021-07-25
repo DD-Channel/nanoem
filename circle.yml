@@ -12,7 +12,7 @@ jobs:
       - run: |
           CC="clang-6.0" \
           CXX="clang++-6.0" \
-          DEPS_PATH=$PWD/out/dependencies \
+          DEPS_PATH=$PWD/build/dependencies \
           FX9_BUILD_DEPENDENCIES_DIRECTORY=$DEPS_PATH \
           NANOEM_BUILD_DEPENDENCIES_DIRECTORY=$DEPS_PATH \
           NANOEM_TARGET_ARCHITECTURES="x86_64" \
@@ -22,9 +22,9 @@ jobs:
           NANOEM_DISABLE_BUILD_SENTRY_NATIVE="1" \
           cmake -DCONFIG=release -P $PWD/scripts/build.cmake
       - run: |
-          export DEPS_PATH=$PWD/out/dependencies
-          mkdir -p $PWD/out/core
-          cd $PWD/out/core
+          export DEPS_PATH=$PWD/build/dependencies
+          mkdir -p $PWD/build/core
+          cd $PWD/build/core
           CC="clang-6.0" \
           CXX="clang++-6.0" \
           FX9_BUILD_DEPENDENCIES_DIRECTORY=$DEPS_PATH \
@@ -53,5 +53,5 @@ jobs:
             ../..
           cmake --build . --config release
       - run: |
-          cd $PWD/out/core
+          cd $PWD/build/core
           cmake --build . --target test

@@ -110,7 +110,7 @@ function(nanoem_cmake_get_install_path _name _base_path _debug_path _release_pat
     set(_arch ${NANOEM_TARGET_ARCHITECTURE})
   endif()
   set(${_base_path} ${base_path} PARENT_SCOPE)
-  set(common_prefix_path ${base_path}/out/${_system_name}/${_target_compiler}/${_arch})
+  set(common_prefix_path ${base_path}/build/${_system_name}/${_target_compiler}/${_arch})
   set(${_debug_path} ${common_prefix_path}/debug/install-root PARENT_SCOPE)
   set(${_release_path} ${common_prefix_path}/release/install-root PARENT_SCOPE)
 endfunction()

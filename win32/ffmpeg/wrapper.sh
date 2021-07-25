@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mkdir -p dependencies/ffmpeg/out/windows/vs2017/x86_64/release
-cd dependencies/ffmpeg/out/windows/vs2017/x86_64/release
+mkdir -p dependencies/ffmpeg/build/windows/vs2017/x86_64/release
+cd dependencies/ffmpeg/build/windows/vs2017/x86_64/release
 ../../../../../configure \
         --prefix=$PWD/install-root \
         --arch=amd64 \

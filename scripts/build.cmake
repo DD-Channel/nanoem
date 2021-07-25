@@ -51,7 +51,7 @@ endfunction()
 
 function(compile_zlib _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/zlib)
-  set(_build_path ${base_build_path}/zlib/out/${_triple_path})
+  set(_build_path ${base_build_path}/zlib/build/${_triple_path})
   file(MAKE_DIRECTORY ${_build_path})
   execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                            ${CMAKE_COMMAND}
@@ -67,7 +67,7 @@ endfunction()
 function(compile_libsoundio _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/libsoundio)
   if(EXISTS ${_source_path})
-    set(_build_path ${base_build_path}/libsoundio/out/${_triple_path})
+    set(_build_path ${base_build_path}/libsoundio/build/${_triple_path})
     file(MAKE_DIRECTORY ${_build_path})
     execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                              ${CMAKE_COMMAND}
@@ -86,7 +86,7 @@ endfunction()
 
 function(compile_minizip _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/minizip)
-  set(_build_path ${base_build_path}/minizip/out/${_triple_path})
+  set(_build_path ${base_build_path}/minizip/build/${_triple_path})
   file(MAKE_DIRECTORY ${_build_path})
   execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                            ${CMAKE_COMMAND}
@@ -100,7 +100,7 @@ function(compile_minizip _cmake_build_type _generator _toolset_option _arch_opti
                                            -DMZ_PKCRYPT=OFF
                                            -DMZ_WZAES=OFF
                                            -DSKIP_INSTALL_FILES=ON
-                                           -DZLIB_ROOT=${base_build_path}/zlib/out/${_triple_path}/install-root
+                                           -DZLIB_ROOT=${base_build_path}/zlib/build/${_triple_path}/install-root
                                            -G "${_generator}" ${_arch_option} ${_toolset_option} ${_source_path})
   rewrite_cmake_cache(${_build_path})
   execute_build(${_build_path})
@@ -108,7 +108,7 @@ endfunction()
 
 function(compile_bullet _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/bullet3)
-  set(_build_path ${base_build_path}/bullet3/out/${_triple_path})
+  set(_build_path ${base_build_path}/bullet3/build/${_triple_path})
   file(MAKE_DIRECTORY ${_build_path})
   execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                            ${CMAKE_COMMAND}
@@ -132,7 +132,7 @@ endfunction()
 
 function(compile_glslang _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/glslang)
-  set(_build_path ${base_build_path}/glslang/out/${_triple_path})
+  set(_build_path ${base_build_path}/glslang/build/${_triple_path})
   file(MAKE_DIRECTORY ${_build_path})
   set(_extra_options "")
   execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
@@ -160,7 +160,7 @@ endfunction()
 
 function(compile_nanomsg _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/nanomsg)
-  set(_build_path ${base_build_path}/nanomsg/out/${_triple_path})
+  set(_build_path ${base_build_path}/nanomsg/build/${_triple_path})
   file(MAKE_DIRECTORY ${_build_path})
   execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                            ${CMAKE_COMMAND}
@@ -181,7 +181,7 @@ endfunction()
 
 function(compile_tbb _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/tbb)
-  set(_build_path ${base_build_path}/tbb/out/${_triple_path})
+  set(_build_path ${base_build_path}/tbb/build/${_triple_path})
   file(MAKE_DIRECTORY ${_build_path})
   execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                            ${CMAKE_COMMAND}
@@ -200,7 +200,7 @@ endfunction()
 
 function(compile_spirv_cross _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/spirv-cross)
-  set(_build_path ${base_build_path}/spirv-cross/out/${_triple_path})
+  set(_build_path ${base_build_path}/spirv-cross/build/${_triple_path})
   file(MAKE_DIRECTORY ${_build_path})
   execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                            ${CMAKE_COMMAND}
@@ -220,7 +220,7 @@ endfunction()
 
 function(compile_spirv_tools _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/spirv-tools)
-  set(_build_path ${base_build_path}/spirv-tools/out/${_triple_path})
+  set(_build_path ${base_build_path}/spirv-tools/build/${_triple_path})
   file(MAKE_DIRECTORY ${_build_path})
   # checkout spirv-headers
   set(_branch_name "1.5.4.raytracing.fixed")
@@ -245,7 +245,7 @@ endfunction()
 function(compile_yamlcpp _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/yaml-cpp)
   if(EXISTS ${_source_path})
-    set(_build_path ${base_build_path}/yaml-cpp/out/${_triple_path})
+    set(_build_path ${base_build_path}/yaml-cpp/build/${_triple_path})
     file(MAKE_DIRECTORY ${_build_path})
     execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                              ${CMAKE_COMMAND}
@@ -268,7 +268,7 @@ endfunction()
 function(compile_glfw _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/glfw)
   if(EXISTS ${_source_path})
-    set(_build_path ${base_build_path}/glfw/out/${_triple_path})
+    set(_build_path ${base_build_path}/glfw/build/${_triple_path})
     file(MAKE_DIRECTORY ${_build_path})
     execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                              ${CMAKE_COMMAND}
@@ -288,7 +288,7 @@ endfunction()
 function(compile_mimalloc _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/mimalloc)
   if(EXISTS ${_source_path} AND NOT WIN32)
-    set(_build_path ${base_build_path}/mimalloc/out/${_triple_path})
+    set(_build_path ${base_build_path}/mimalloc/build/${_triple_path})
     file(MAKE_DIRECTORY ${_build_path})
     execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                              ${CMAKE_COMMAND}
@@ -313,7 +313,7 @@ endfunction()
 function(compile_sentry_native _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/sentry-native)
   if(EXISTS ${_source_path})
-    set(_build_path ${base_build_path}/sentry-native/out/${_triple_path})
+    set(_build_path ${base_build_path}/sentry-native/build/${_triple_path})
     file(MAKE_DIRECTORY ${_build_path})
     # force using vs2017 due to compilation failure
     set(_global_cmake_flags "${global_cmake_flags}")
@@ -327,7 +327,7 @@ function(compile_sentry_native _cmake_build_type _generator _toolset_option _arc
     if(WIN32 AND "${_toolset_option}" STREQUAL "-Tv140")
       set(_toolset_option "-Tv141")
     endif()
-    set(_zlib_build_path ${base_build_path}/zlib/out/${_triple_path})
+    set(_zlib_build_path ${base_build_path}/zlib/build/${_triple_path})
     execute_process(COMMAND ${CMAKE_COMMAND} -E chdir ${_build_path}
                                              ${CMAKE_COMMAND}
                                              ${_global_cmake_flags}
@@ -338,7 +338,7 @@ function(compile_sentry_native _cmake_build_type _generator _toolset_option _arc
                                              -DSENTRY_BUILD_EXAMPLES=OFF
                                              -DSENTRY_BUILD_TESTS=OFF
                                              -DSENTRY_TRANSPORT=${_transport}
-                                             -DZLIB_ROOT=${base_build_path}/zlib/out/${_triple_path}/install-root
+                                             -DZLIB_ROOT=${base_build_path}/zlib/build/${_triple_path}/install-root
                                              -G "${_generator}" ${_arch_option} ${_toolset_option} ${_source_path})
     rewrite_cmake_cache(${_build_path})
     rewrite_ninja_ub_workaround(${_build_path})
@@ -350,7 +350,7 @@ function(compile_icu4c _cmake_build_type _generator _toolset_option _arch_option
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/icu)
   set(_source_path_icu4c ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/icu/icu4c)
   if(EXISTS ${_source_path} AND EXISTS ${_source_path_icu4c})
-    set(_build_path ${base_build_path}/icu/out/${_triple_path})
+    set(_build_path ${base_build_path}/icu/build/${_triple_path})
     set(_branch_name "release-57-2")
     execute_process(COMMAND ${GIT_EXECUTABLE} checkout ${_branch_name} WORKING_DIRECTORY ${_source_path})
     execute_process(COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/cmake/icudt57l.dat ${_source_path_icu4c}/source/data/in)
@@ -402,7 +402,7 @@ endfunction()
 function(compile_ffmpeg _cmake_build_type _generator _toolset_option _arch_option _triple_path)
   set(_source_path ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/ffmpeg)
   if(EXISTS ${_source_path})
-    set(_build_path ${base_build_path}/ffmpeg/out/${_triple_path})
+    set(_build_path ${base_build_path}/ffmpeg/build/${_triple_path})
     set(_branch_name "n4.2.4")
     list(APPEND _ffmpeg_build_options "--disable-debug")
     list(APPEND _ffmpeg_build_options "--disable-asm")
@@ -465,7 +465,7 @@ function(compile_ffmpeg _cmake_build_type _generator _toolset_option _arch_optio
         set(_ffmpeg_built_options2 ${_ffmpeg_build_options})
         list(APPEND _ffmpeg_built_options2 "--prefix=\"${_interm_path}/install-root\"")
         string(JOIN ";" _full_build_options ${_ffmpeg_built_options2})
-        execute_process(COMMAND 
+        execute_process(COMMAND
           ${CMAKE_COMMAND} -E env
             CFLAGS=${_build_flags}
             CXXFLAGS=${_build_flags}
@@ -586,7 +586,7 @@ function(compile_all_repositories _generator _toolset_option _compiler _arch _co
   if("${_arch}" STREQUAL "ub")
     file(GLOB _libraries ${base_build_path}/*)
     foreach(_item ${_libraries})
-      set(_path "${_item}/out/${_platform}/${_compiler}")
+      set(_path "${_item}/build/${_platform}/${_compiler}")
       if(EXISTS ${_path})
         file(CREATE_LINK ${_path}/ub ${_path}/arm64 SYMBOLIC)
         file(CREATE_LINK ${_path}/ub ${_path}/x86_64 SYMBOLIC)
