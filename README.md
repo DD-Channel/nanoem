@@ -28,11 +28,11 @@ git submodule update --init --recursive
 
 # needs setting NANOEM_TARGET_COMPILER explicitly when the compiler is clang (default is gcc on Linux)
 export NANOEM_TARGET_COMPILER=clang
-cmake -P scripts/build.cmake
-mkdir out
-cd out
-cmake -G Ninja ..
-cmake --build .
+cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -P scripts/build.cmake
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -G Ninja ..
+cmake --build . --config Release
 
 # OpenGL 3.3 Core Profile or higher is required to run on Linux
 cd sapp && ./nanoem
