@@ -2,6 +2,7 @@
 .envrc
 build
 deps
+out/
 
 nanoem/nanoem.cc
 

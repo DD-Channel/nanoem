@@ -600,7 +600,7 @@ function(cleanup_all_repositories)
   foreach(item ${all_repositories})
     string(STRIP "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/${item}" _path)
     execute_process(COMMAND ${GIT_EXECUTABLE} checkout -- . WORKING_DIRECTORY ${_path})
-    execute_process(COMMAND ${GIT_EXECUTABLE} clean -df -e build WORKING_DIRECTORY ${_path})
+    execute_process(COMMAND ${GIT_EXECUTABLE} clean -df -e out WORKING_DIRECTORY ${_path})
   endforeach()
 endfunction()
 
