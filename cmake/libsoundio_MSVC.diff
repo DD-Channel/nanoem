@@ -1,0 +1,12 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6541f1b..f904652 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -198,6 +198,7 @@ set(LIBSOUNDIO_LIBS
+ )
+ 
+ if(MSVC)
++    set_source_files_properties(${LIBSOUNDIO_SOURCES} PROPERTIES LANGUAGE CXX )
+     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} /Wall")
+     set(LIB_CFLAGS "/TP /W4")
+     set(EXAMPLE_CFLAGS "/W4")

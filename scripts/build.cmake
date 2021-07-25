@@ -637,6 +637,17 @@ if(GIT_FOUND)
       message(FATAL_ERROR "Apply patch for bullet failed!")
   endif()
 
+  if (MSVC)  # libsoundio MSVC patch
+    execute_process(COMMAND ${GIT_EXECUTABLE} checkout -- .
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/libsoundio)
+    execute_process(COMMAND ${GIT_EXECUTABLE} apply ${CMAKE_CURRENT_SOURCE_DIR}/cmake/libsoundio_MSVC.diff
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/libsoundio
+                    RESULT_VARIABLE result)
+    if(result EQUAL "1")
+      message(FATAL_ERROR "Apply patch for libsoundio failed!")
+    endif()
+  endif()
+
   execute_process(COMMAND ${GIT_EXECUTABLE} checkout -- .
                   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/glslang)
   file(STRINGS ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/glslang/glslang/Include/InfoSink.h input_info_sink_h NEWLINE_CONSUME)
