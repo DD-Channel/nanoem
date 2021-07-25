@@ -73,6 +73,34 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/build/core
           cmake --build . --target test
+
+  win-build:
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+      - name: build all dependencies of nanoem
+        run:  cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -P scripts/build.cmake
+      - name: build nanoem itself
+        run: |
+          mkdir -p build
+          cd build
+          cmake ^
+            -DCMAKE_INSTALL_PREFIX=$PWD/install-root ^
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo ^
+            -G Ninja ^
+            ..
+          cmake --build . --config Release
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: nanoem-win
+          path: build/install-root
+
   codeql:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
